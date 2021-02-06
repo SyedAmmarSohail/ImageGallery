@@ -22,11 +22,26 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     CategoryListAdapter.OnItemClickListener {
 
     private val mAdapter: SnapListAdapter by lazy { SnapListAdapter() }
-    private val mCategoryAdapter: CategoryListAdapter by lazy { CategoryListAdapter(onItemClickListener = this) }
+    private val mCategoryAdapter: CategoryListAdapter by lazy {
+        CategoryListAdapter(
+            onItemClickListener = this
+        )
+    }
 
     private val categoryList = listOf<Category>(
-        Category("backgrounds"), Category("fashion"), Category("nature"), Category("science"), Category("education"), Category("feelings"),
-        Category("health"), Category("people"), Category("religion"), Category("animals"), Category("industry"), Category("computer"), Category("food")
+        Category("backgrounds"),
+        Category("fashion"),
+        Category("nature"),
+        Category("science"),
+        Category("education"),
+        Category("feelings"),
+        Category("health"),
+        Category("people"),
+        Category("religion"),
+        Category("animals"),
+        Category("industry"),
+        Category("computer"),
+        Category("food")
     )
 
 
@@ -43,7 +58,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         }
 
         mViewBinding.categoryRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = mCategoryAdapter
         }
 
@@ -51,7 +67,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
             mViewBinding.searchView.isIconified = false
         }
 
-        mViewBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        mViewBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(search: String?): Boolean {
                 mViewModel.getPosts(search = search)
                 return true
@@ -77,8 +93,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
                 is State.Success -> {
                     if (state.data.isNotEmpty()) {
                         mAdapter.submitList(state.data.toMutableList())
-                        showLoading(false)
+                    } else {
+                        showToast(getString(R.string.data_not_found))
                     }
+                    showLoading(false)
                 }
                 is State.Error -> {
                     showToast(state.message)
