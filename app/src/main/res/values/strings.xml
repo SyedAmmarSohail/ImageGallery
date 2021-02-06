@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ImageGallery</string>
+    <string name="text_no_connectivity">No Connection</string>
+    <string name="text_connectivity">Back Online</string>
+    <string name="exit">Exit?</string>
+    <string name="exit_message">Are you sure want to exit?</string>
+</resources>
