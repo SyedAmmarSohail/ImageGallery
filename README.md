@@ -15,5 +15,6 @@
 ![](https://github.com/SyedAmmarSohail/ImageGallery/blob/master/art/architecture.png)
 
 ## Preview
-![](https://github.com/SyedAmmarSohail/ImageGallery/blob/master/art/app_picture.png)
+<img src="/art/app_picture.png" width="346" height="700" alt="Home"/> 
+
 
